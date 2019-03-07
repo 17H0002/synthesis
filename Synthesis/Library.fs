@@ -1,28 +1,40 @@
 ﻿module Synthesis
 
-let abelar _ =
-    failwith "Not implemented"
+let abelar x =
+    x > 12 && x <3097 && x%12 = 0
 
-let area _ _ =
-    failwith "Not implemented"
+let area x y =
+    match x<0.0 || y<0.0 with
+    |true -> failwith "lols" 
+    |false ->  x * y * 0.5
 
-let zollo _ =
-    failwith "Not implemented"
+let zollo x =
+    match x<0 with
+    |true -> x * -1
+    |false -> x * 2
 
-let min _ _ =
-    failwith "Not implemented"
+let min x y =
+    match x<y with
+    |true -> x
+    |false -> y
 
-let max _ _ =
-    failwith "Not implemented"
+let max x y =
+    match x>y with
+    |true -> x
+    |false -> y
 
-let ofTime _ _ _ =
-    failwith "Not implemented"
+let ofTime a b c =
+    a*60*60 + b*60 + c
 
-let toTime _ =
-    failwith "Not implemented"
+let toTime x =
+    match x>0 with
+    |true -> x/3600, (x%3600)/60, ((x%3600)%60)
+    |false -> 0,0,0  
 
-let digits _ =
-    failwith "Not implemented"
+let digits x =
+    let rec REEEEEEE wow count =
+    match wow = 0 with 
+     
 
 let minmax _ =
     failwith "Not implemented"
