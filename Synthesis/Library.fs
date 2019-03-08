@@ -33,7 +33,7 @@ let toTime x =
 
 let digits x =
     let rec REEEEEEE wow count =
-    match wow = 0 with 
+    match wow = 0 with hi
      
 
 let minmax _ =
