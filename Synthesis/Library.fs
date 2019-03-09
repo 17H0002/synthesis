@@ -32,24 +32,70 @@ let toTime x =
     |false -> 0,0,0  
 
 let digits x =
-    let rec REEEEEEE wow count =
-    match wow = 0 with hi
+    let rec funkymonkey v =
+        match (v>9 || v < -9) with
+        |false -> 1
+        |true -> 1 + funkymonkey (v/10)
+    funkymonkey x
+    
      
 
-let minmax _ =
-    failwith "Not implemented"
+let minmax (a,b,c,d) =
+    (min (min a b) (min c d),max (max a b) (max c d))
+    
+    
 
-let isLeap _ =
-    failwith "Not implemented"
+let isLeap x =
+    match x < 1582 with
+    |true -> failwith "<1582"
+    |false ->     match ((x % 4 = 0) && ((x % 100 <> 0) || (x % 400 = 0) )) with
+                    |true -> true
+                    |false -> false
 
-let month _ =
-    failwith "Not implemented"
 
-let toBinary _ =
-    failwith "Not implemented"
+let month month =
+    match month with
+    |1 -> ("January", 31)
+    |2 -> ("February", 28)
+    |3 -> ("March", 31)
+    |4 -> ("April", 30)
+    |5 -> ("May", 31)
+    |6 -> ("June", 30)
+    |7 -> ("July", 31)
+    |8 -> ("August", 31)
+    |9 -> ("September", 30)
+    |10 -> ("October", 31)
+    |11 -> ("November", 30)
+    |12 -> ("December", 31)
+    |_ -> failwith "style" //what black magic will lose me a line???
 
-let bizFuzz _ =
-    failwith "Not implemented"
+let toBinary x =
+    match x < 0 with
+       |true -> failwith "REEEEE"
+       |false -> match x=0 with
+                    |true -> "0"
+                    |false -> let rec funkymonkey v =
+                                match (v = 0) with
+                                   |true -> ""
+                                   |false -> match v%2=0 with
+                                                |true -> funkymonkey(v/2) + "0"
+                                                |false ->  funkymonkey(v/2) + "1" 
+                              funkymonkey x
+    
+
+let bizFuzz x =
+        let rec zebrastripes (gg,y,u,z) = match gg=1 || gg<1  with
+                                            |true -> y,u,z
+                                            |false -> match gg%3 = 0 with
+                                                        |true -> match gg % 5 = 0 with
+                                                                    |true -> zebrastripes (gg-1,y+1,u+1,z+1)
+                                                                    |false -> zebrastripes (gg-1,y+1,u,z)
+                                                        |false ->  match gg % 5 = 0 with 
+                                                                    |true -> zebrastripes (gg-1,y,u+1,z)
+                                                                    |false -> zebrastripes (gg-1,y,u,z)
+        zebrastripes(x,0,0,0)
+
+
 
 let monthDay _ _ =
     failwith "Not implemented"
