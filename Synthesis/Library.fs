@@ -1,5 +1,7 @@
 ﻿module Synthesis
 
+open System.Security.Principal
+
 let abelar x =
     x > 12 && x <3097 && x%12 = 0
 
@@ -97,8 +99,42 @@ let bizFuzz x =
 
 
 
-let monthDay _ _ =
-    failwith "Not implemented"
+let monthDay d y =
+    let rec findMonth x u = 
+        match x<=(snd (month u)),isLeap y,d>365 && d < 367,u = 2,d = 60 with
+            |false,true,_,true,true -> "February"
+            |_,true,true,_,_ -> "December"
+            |true,false,_,_,_ -> fst (month u)                                            
+            |false,false,_,_,_ -> findMonth (x- snd (month u)) (u+1) 
+            |false,true,_,true,_ -> findMonth (x - 29) (u+1)
+            |false,true,_,_,_ -> findMonth (x- snd (month u)) (u+1)
+            |true,true,_,_,_ -> fst (month u)
+            |_,_,_,_,_ -> "Someone pass me another tuple, I have some patching to do..."
+      //MWUHAHAHAHAHAHHAHAHAHAHAHAHAHAHAHAHHAAHHAHAHAHAHAHAHAHAHAHAHAHAHAHAHHAAHHAHAHAHAHAHAHA  
+    match d > 0 && y > 1581 && ((d<=365) || (d = 366 && (isLeap y = true))) with
+        |false -> failwith "somtin"
+        |true -> findMonth d 1 
 
-let coord _ =
-    failwith "Not implemented"
+             
+    
+                                            
+
+
+let coord (x,y) =
+    let rec calculate guess i n =
+        match i with
+        |10 -> guess
+        |_ -> 
+            let g = (guess + n/guess) /2.0
+            calculate g (i+1) n
+    let sqrt n =
+        match n <0.0 with
+        |true -> failwith "k"
+        |false -> calculate (n/2.0) 0 n
+    let straightisgreat (x,y) (a,b) =
+        (sqrt(((x-a)*(x-a))+((y-b)*(y-b))))
+    let contains (x,y) (a,b) q w =
+         x>a && y<b && x<a+q && y>b-w 
+
+    straightisgreat
+
